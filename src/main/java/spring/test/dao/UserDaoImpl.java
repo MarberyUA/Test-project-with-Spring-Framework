@@ -1,14 +1,13 @@
 package spring.test.dao;
 
+import java.util.List;
+import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import spring.test.exceptions.DataProcessingException;
 import spring.test.model.User;
 import spring.test.util.HibernateUtil;
-
-import javax.persistence.criteria.CriteriaQuery;
-import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -39,7 +38,8 @@ public class UserDaoImpl implements UserDao {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            CriteriaQuery<User> criteriaQuery = session.getCriteriaBuilder().createQuery(User.class);
+            CriteriaQuery<User> criteriaQuery = session.getCriteriaBuilder()
+                    .createQuery(User.class);
             criteriaQuery.from(User.class);
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {

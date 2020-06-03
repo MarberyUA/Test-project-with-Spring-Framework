@@ -1,8 +1,7 @@
 package spring.test.dao;
 
-import spring.test.model.User;
-
 import java.util.List;
+import spring.test.model.User;
 
 public interface UserDao {
     User add(User user);
