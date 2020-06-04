@@ -37,7 +37,7 @@ public class AppConfig {
 
         Properties properties = new Properties();
         properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-        properties.put("hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         localSessionFactoryBean.setHibernateProperties(properties);
         localSessionFactoryBean.setAnnotatedClasses(User.class);
         return localSessionFactoryBean;
