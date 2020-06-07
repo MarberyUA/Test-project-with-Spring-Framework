@@ -1,18 +1,17 @@
 package spring.test.util;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import spring.test.config.AppConfig;
 
 public class ApplicationContextUtil {
     private static AnnotationConfigApplicationContext context;
-    private Class cls;
 
-    private ApplicationContextUtil(Class cls) {
-        this.cls = cls;
+    private ApplicationContextUtil() {
     }
 
-    public static AnnotationConfigApplicationContext getInstance(Class value) {
+    public static AnnotationConfigApplicationContext getInstance() {
         if (context == null) {
-            context = new AnnotationConfigApplicationContext(value);
+            context = new AnnotationConfigApplicationContext(AppConfig.class);
         }
         return context;
     }
