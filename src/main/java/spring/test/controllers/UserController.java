@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public UserResponseDto get(@PathVariable String userId, NullPointerException exception) {
+    public UserResponseDto get(@PathVariable String userId) {
         User user = userService.get(Long.valueOf(userId));
         return new UserResponseDto(user.getUsername(), user.getEmail());
     }
