@@ -2,21 +2,23 @@ package spring.test.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import spring.test.UserResponseDto;
-import spring.test.config.AppConfig;
 import spring.test.model.User;
 import spring.test.service.UserService;
 
 @RequestMapping("/user")
 @RestController
 public class UserController {
-    private final UserService userService = new AnnotationConfigApplicationContext(AppConfig.class)
-            .getBean(UserService.class);
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/inject")
     public void injectData() {
