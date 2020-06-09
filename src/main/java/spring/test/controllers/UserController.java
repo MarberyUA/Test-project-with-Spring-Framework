@@ -31,16 +31,20 @@ public class UserController {
     @GetMapping("/{userId}")
     public UserResponseDto get(@PathVariable String userId) {
         User user = userService.get(Long.valueOf(userId));
-        return new UserResponseDto(user.getUsername(), user.getEmail());
+        return userToResponse(user);
     }
 
     @GetMapping("/all")
     public List<UserResponseDto> getAll() {
         List<UserResponseDto> users = new ArrayList<>();
         for (User user : userService.listUsers()) {
-            users.add(new UserResponseDto(user.getUsername(), user.getEmail()));
+            users.add(userToResponse(user));
         }
         return users;
+    }
+
+    private UserResponseDto userToResponse(User user) {
+        return new UserResponseDto(user.getUsername(), user.getEmail());
     }
 
 }
